@@ -1,6 +1,8 @@
 2018-06-06
 ----------
 * AR-1017: Add support to TLSv1.2 to Production
+* HttpClient minimum version required 4.4.1
+* HttpCore minimum version required 4.4.4
 
 Issue:
 https://pagosonline.jira.com/browse/AR-1017
