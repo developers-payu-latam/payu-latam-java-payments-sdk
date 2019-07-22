@@ -448,5 +448,14 @@ public abstract class PayU {
 		/** The platform id field */
 		String PLATFORM_ID = "platformId";
 
+		/** The Dinero Mail api subject field */
+		String DM_API_SUBJECT = "dmApiSubject";
+
+		/** The Dinero Mail api message field */
+		String DM_API_MESSAGE = "dmApiMessage";
+
+		/** The Dinero Mail api unique message id field */
+		String DM_API_UNIQUE_MESSAGE_ID = "dmApiUniqueMessageId";
+
 	}
 }
