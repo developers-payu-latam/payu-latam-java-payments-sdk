@@ -623,19 +623,19 @@ public final class RequestUtil extends CommonRequestUtil {
 		if (dmApiMessage != null) {
 			transaction.addExtraParameter(
 					ExtraParemeterNames.DM_API_MESSAGE.name(),
-					installments.toString());
+					dmApiMessage);
 		}
 
 		if (dmApiSubject != null) {
 			transaction.addExtraParameter(
 					ExtraParemeterNames.DM_API_SUBJECT.name(),
-					installments.toString());
+					dmApiSubject);
 		}
 
 		if (dmApiUniqueMessageId != null) {
 			transaction.addExtraParameter(
 					ExtraParemeterNames.DM_API_UNIQUE_MESSAGE_ID.name(),
-					installments.toString());
+					dmApiUniqueMessageId);
 		}
 
 		transaction.setCreateCreditCardToken(createCreditCardToken);
