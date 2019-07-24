@@ -1,18 +1,14 @@
 /**
  * The MIT License (MIT)
- *
  * Copyright (c) 2016 developers-payu-latam
- *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,41 +33,11 @@ import com.payu.sdk.exceptions.InvalidParametersException;
 import com.payu.sdk.exceptions.PayUException;
 import com.payu.sdk.exceptions.SDKException.ErrorCode;
 import com.payu.sdk.helper.SignatureHelper;
-import com.payu.sdk.model.Address;
-import com.payu.sdk.model.AddressV4;
-import com.payu.sdk.model.BankListInformation;
-import com.payu.sdk.model.BcashRequest;
-import com.payu.sdk.model.Buyer;
-import com.payu.sdk.model.CreditCard;
-import com.payu.sdk.model.CreditCardToken;
-import com.payu.sdk.model.CreditCardTokenInformation;
-import com.payu.sdk.model.Currency;
-import com.payu.sdk.model.DocumentType;
-import com.payu.sdk.model.ExtraParemeterNames;
-import com.payu.sdk.model.Language;
-import com.payu.sdk.model.Merchant;
-import com.payu.sdk.model.Order;
-import com.payu.sdk.model.Payer;
-import com.payu.sdk.model.PaymentCountry;
-import com.payu.sdk.model.PaymentMethod;
-import com.payu.sdk.model.Person;
-import com.payu.sdk.model.PersonType;
-import com.payu.sdk.model.RemoveCreditCardToken;
-import com.payu.sdk.model.Transaction;
-import com.payu.sdk.model.TransactionIntegrationMethod;
-import com.payu.sdk.model.TransactionSource;
-import com.payu.sdk.model.TransactionType;
+import com.payu.sdk.model.*;
 import com.payu.sdk.model.request.Command;
 import com.payu.sdk.model.request.CommandRequest;
 import com.payu.sdk.model.request.Request;
-import com.payu.sdk.model.TransactionIntegrationMethod;
-import com.payu.sdk.paymentplan.model.RecurringBill;
-import com.payu.sdk.payments.model.ConfirmationPageRequest;
-import com.payu.sdk.payments.model.CreditCardTokenListRequest;
-import com.payu.sdk.payments.model.CreditCardTokenRequest;
-import com.payu.sdk.payments.model.PaymentMethodRequest;
-import com.payu.sdk.payments.model.PaymentRequest;
-import com.payu.sdk.payments.model.RemoveCreditCardTokenRequest;
+import com.payu.sdk.payments.model.*;
 import com.payu.sdk.reporting.model.ReportingRequest;
 
 /**
@@ -86,8 +52,10 @@ public final class RequestUtil extends CommonRequestUtil {
 	/** The encoding used to send confirmation page */
 	private static final String ENCODING = Constants.DEFAULT_ENCODING
 			.toString();
+
 	/** The character to append parameters */
 	private static final String APPENDER = "&";
+
 	/** The character to assign a value param */
 	private static final String EQUALS = "=";
 
@@ -95,6 +63,7 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * Private Constructor
 	 */
 	private RequestUtil() {
+
 	}
 
 	/**
@@ -107,7 +76,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		return buildPaymentsPingRequest(Collections.<String, String>emptyMap());
 
 	}
-	
+
 	/**
 	 * Builds a payments ping request
 	 *
@@ -135,7 +104,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		return buildReportingPingRequest(Collections.<String, String>emptyMap());
 
 	}
-	
+
 	/**
 	 * Builds a reporting ping request
 	 *
@@ -187,7 +156,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		PaymentRequest request = buildDefaultPaymentRequest();
 		request.setCommand(Command.SUBMIT_TRANSACTION);
 		setAuthenticationByParameter(parameters, request);
-		
+
 		request.setTransaction(buildTransaction(parameters, transactionType));
 		setLanguageByParameter(parameters, request);
 
@@ -201,7 +170,7 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * 	<li>PayU.apiKey</li>
 	 * 	<li>PayU.apiLogin</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param parameters
 	 * @param request
 	 */
@@ -211,7 +180,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		if (request.getMerchant() != null && request.getMerchant().getApiKey() == null) {
 			request.getMerchant().setApiKey(getParameter(parameters, PayU.PARAMETERS.API_KEY));
 		}
-		
+
 		// The PayU.apiLogin has priority over the parameters
 		if (request.getMerchant() != null && request.getMerchant().getApiLogin() == null) {
 			request.getMerchant().setApiLogin(getParameter(parameters, PayU.PARAMETERS.API_LOGIN));
@@ -233,8 +202,7 @@ public final class RequestUtil extends CommonRequestUtil {
 			if (language != null) {
 				request.setLanguage(language);
 			}
-		}
-		catch (InvalidParametersException e) {
+		} catch (InvalidParametersException e) {
 			LoggerUtil.warning("The parameter {0} is invalid. The language will be obtained from PayU.language.",
 					PayU.PARAMETERS.LANGUAGE);
 		}
@@ -267,8 +235,7 @@ public final class RequestUtil extends CommonRequestUtil {
 
 				order.setLanguage(language);
 			}
-		}
-		catch (InvalidParametersException e) {
+		} catch (InvalidParametersException e) {
 			LoggerUtil.warning("The parameter {0} is invalid. The language will be obtained from PayU.language.",
 					PayU.PARAMETERS.LANGUAGE);
 		}
@@ -283,7 +250,7 @@ public final class RequestUtil extends CommonRequestUtil {
 
 		return buildPaymentMethodsListRequest(Collections.<String, String>emptyMap());
 	}
-	
+
 	/**
 	 * Builds the payment methods list request.
 	 *
@@ -303,30 +270,30 @@ public final class RequestUtil extends CommonRequestUtil {
 
 	/**
 	 * Builds the payment method request
-	 * 
+	 *
 	 * @param paymentMethod
 	 * @param apiKey
 	 * @param apiLogin
 	 * @return the payment method request
 	 */
 	public static Request buildPaymentMethodAvailability(String paymentMethod, String apiKey, String apiLogin) {
-		
+
 		PaymentMethodRequest request = new PaymentMethodRequest();
 		request = (PaymentMethodRequest) buildDefaultRequest(request);
 		request.setTest(PayU.isTest);
 		request.setCommand(Command.GET_PAYMENT_METHOD_AVAILABILITY);
 		request.setPaymentMethod(paymentMethod);
-		
+
 		// Priority the api key obtained from PayU.apiKey
 		if (request.getMerchant() != null && request.getMerchant().getApiKey() == null) {
 			request.getMerchant().setApiKey(apiKey);
 		}
-		
+
 		// Priority the api login obtained from PayU.apiLogin
 		if (request.getMerchant() != null && request.getMerchant().getApiLogin() == null) {
 			request.getMerchant().setApiLogin(apiLogin);
 		}
-		
+
 		return request;
 	}
 
@@ -347,7 +314,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		request.setCommand(Command.ORDER_DETAIL);
 		setAuthenticationByParameter(parameters, request);
 		setLanguageByParameter(parameters, request);
-		
+
 		Integer orderId = getIntegerParameter(parameters,
 				PayU.PARAMETERS.ORDER_ID);
 
@@ -522,6 +489,7 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * @return A simple request with merchant and language
 	 */
 	private static Request buildDefaultRequest(CommandRequest request) {
+
 		request.setMerchant(buildMerchant());
 		request.setLanguage(PayU.language);
 		return request;
@@ -533,6 +501,7 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * @return A simple payment request with merchant, language and test
 	 */
 	private static PaymentRequest buildDefaultPaymentRequest() {
+
 		PaymentRequest request = new PaymentRequest();
 		request = (PaymentRequest) buildDefaultRequest(request);
 		request.setTest(PayU.isTest);
@@ -545,6 +514,7 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * @return A simple reporting request with merchant, language and test
 	 */
 	private static ReportingRequest buildDefaultReportingRequest() {
+
 		ReportingRequest request = new ReportingRequest();
 		request = (ReportingRequest) buildDefaultRequest(request);
 		request.setTest(PayU.isTest);
@@ -637,7 +607,8 @@ public final class RequestUtil extends CommonRequestUtil {
 	private static void buildCreditCardTransaction(Transaction transaction,
 			String nameOnCard, String creditCardNumber, String expirationDate,
 			Boolean processWithoutCvv2, String securityCode,
-			Integer installments, Boolean createCreditCardToken)
+			Integer installments, Boolean createCreditCardToken, String dmApiMessage, String dmApiSubject,
+			String dmApiUniqueMessageId)
 			throws InvalidParametersException {
 
 		transaction.setCreditCard(buildCreditCard(nameOnCard, creditCardNumber,
@@ -646,6 +617,24 @@ public final class RequestUtil extends CommonRequestUtil {
 		if (installments != null) {
 			transaction.addExtraParameter(
 					ExtraParemeterNames.INSTALLMENTS_NUMBER.name(),
+					installments.toString());
+		}
+
+		if (dmApiMessage != null) {
+			transaction.addExtraParameter(
+					ExtraParemeterNames.DM_API_MESSAGE.name(),
+					installments.toString());
+		}
+
+		if (dmApiSubject != null) {
+			transaction.addExtraParameter(
+					ExtraParemeterNames.DM_API_SUBJECT.name(),
+					installments.toString());
+		}
+
+		if (dmApiUniqueMessageId != null) {
+			transaction.addExtraParameter(
+					ExtraParemeterNames.DM_API_UNIQUE_MESSAGE_ID.name(),
 					installments.toString());
 		}
 
@@ -919,7 +908,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		//Obtains the payment method. If the parameter is a value that doesn't belong to the enum, this return null and continue
 
 		PaymentMethod paymentMethod = CommonRequestUtil
-				.getPaymentMethodParameter(parameters,PayU.PARAMETERS.PAYMENT_METHOD);
+				.getPaymentMethodParameter(parameters, PayU.PARAMETERS.PAYMENT_METHOD);
 
 		String reason = getParameter(parameters,
 				PayU.PARAMETERS.REASON);
@@ -932,8 +921,17 @@ public final class RequestUtil extends CommonRequestUtil {
 
 		Integer installments = getIntegerParameter(parameters,
 				PayU.PARAMETERS.INSTALLMENTS_NUMBER);
-                
-                Integer promotionId = getIntegerParameter(parameters,
+
+		String dmApiSubject = getParameter(parameters,
+				PayU.PARAMETERS.DM_API_SUBJECT);
+
+		String dmApiMessage = getParameter(parameters,
+				PayU.PARAMETERS.DM_API_MESSAGE);
+
+		String dmApiUniqueMessageId = getParameter(parameters,
+				PayU.PARAMETERS.DM_API_UNIQUE_MESSAGE_ID);
+
+		Integer promotionId = getIntegerParameter(parameters,
 				PayU.PARAMETERS.PROMOTION_ID);
 
 		// TAX_VALUE
@@ -985,7 +983,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		if (bcashRequestContentType != null || bcashRequestContent != null) {
 			transaction.setBcashRequest(buildBcashRequest(bcashRequestContentType, bcashRequestContent));
 		}
-		
+
 		Integer platformId = getIntegerParameter(parameters, PayU.PARAMETERS.PLATFORM_ID);
 		transaction.setPlatformId(platformId);
 
@@ -1030,7 +1028,7 @@ public final class RequestUtil extends CommonRequestUtil {
 
 			transaction.setOrder(order);
 
-			if (orderId != null ) {
+			if (orderId != null) {
 				transaction.getOrder().setId(orderId);
 			}
 
@@ -1048,19 +1046,18 @@ public final class RequestUtil extends CommonRequestUtil {
 				addPSEExtraParameters(transaction, parameters);
 			}
 
-
 			if (creditCardNumber != null || tokenId != null) {
-				
+
 				// If credit card holder name is null or empty, a payer name
 				// will be send to build a credit card
 				creditCardHolderName = creditCardHolderName != null
 						&& !creditCardHolderName.trim().equals("") ? creditCardHolderName
 						: payerName;
-				
+
 				buildCreditCardTransaction(transaction, creditCardHolderName,
 						creditCardNumber, creditCardExpirationDate,
 						processWithoutCvv2, securityCode, installments,
-						createCreditCardToken);
+						createCreditCardToken, dmApiMessage, dmApiSubject, dmApiUniqueMessageId);
 			}
 
 			if (expirationDate != null) {
@@ -1069,12 +1066,12 @@ public final class RequestUtil extends CommonRequestUtil {
 						Constants.DEFAULT_DATE_FORMAT);
 				transaction.setExpirationDate(expDate);
 			}
-                        
-                        if (promotionId != null){
-                            	transaction.addExtraParameter(
-                                    ExtraParemeterNames.PROMOTION_ID.name(),
-                                    promotionId.toString());
-                        }
+
+			if (promotionId != null) {
+				transaction.addExtraParameter(
+						ExtraParemeterNames.PROMOTION_ID.name(),
+						promotionId.toString());
+			}
 
 			transaction.setCreditCardTokenId(tokenId);
 			//Set the param of Payment Method
@@ -1087,8 +1084,8 @@ public final class RequestUtil extends CommonRequestUtil {
 
 			//Set the integration method of request
 			String paramIntegrationMethod = getParameter(parameters, PayU.PARAMETERS.INTEGRATION_METHOD);
-			transaction.setIntegrationMethod(TransactionIntegrationMethod.fromString(paramIntegrationMethod ));
-			
+			transaction.setIntegrationMethod(TransactionIntegrationMethod.fromString(paramIntegrationMethod));
+
 			addTransactionExtraParameters(transaction, parameters);
 		} else if (TransactionType.VOID.equals(transactionType)
 				|| TransactionType.REFUND.equals(transactionType)
@@ -1113,6 +1110,7 @@ public final class RequestUtil extends CommonRequestUtil {
 
 		return transaction;
 	}
+
 	/**
 	 * Adds the transaction extra parameters.
 	 *
@@ -1120,20 +1118,21 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * @param parameters the parameters
 	 * @throws InvalidParametersException the invalid parameters exception
 	 */
-	private static void addTransactionExtraParameters(Transaction transaction, Map<String, String> parameters) throws InvalidParametersException {
+	private static void addTransactionExtraParameters(Transaction transaction, Map<String, String> parameters)
+			throws InvalidParametersException {
 
 		String extra1 = getParameter(parameters, PayU.PARAMETERS.EXTRA1);
 		String extra2 = getParameter(parameters, PayU.PARAMETERS.EXTRA2);
 		String extra3 = getParameter(parameters, PayU.PARAMETERS.EXTRA3);
-		
+
 		if (extra1 != null) {
 			transaction.addExtraParameter(ExtraParemeterNames.EXTRA1.name(), extra1);
 		}
-		
+
 		if (extra2 != null) {
 			transaction.addExtraParameter(ExtraParemeterNames.EXTRA2.name(), extra2);
 		}
-		
+
 		if (extra3 != null) {
 			transaction.addExtraParameter(ExtraParemeterNames.EXTRA3.name(), extra3);
 		}
@@ -1209,6 +1208,7 @@ public final class RequestUtil extends CommonRequestUtil {
 
 	public static String mapToString(Map<String, String> map)
 			throws PayUException {
+
 		StringBuilder stringBuilder = new StringBuilder();
 		if (map != null && !map.isEmpty()) {
 			for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -1234,7 +1234,6 @@ public final class RequestUtil extends CommonRequestUtil {
 		return stringBuilder.toString();
 	}
 
-
 	/**
 	 * Method for add in the transaccion a {@link ExtraParemeterNames} with the response url page.
 	 * <ul>
@@ -1246,7 +1245,8 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * @param responseUrl
 	 * @throws InvalidParametersException
 	 */
-	private static void addResponseUrlPage(final Transaction transaction, String responseUrl) throws InvalidParametersException{
+	private static void addResponseUrlPage(final Transaction transaction, String responseUrl)
+			throws InvalidParametersException {
 
 		transaction.addExtraParameter(ExtraParemeterNames.RESPONSE_URL.name(),
 				responseUrl);
@@ -1300,10 +1300,12 @@ public final class RequestUtil extends CommonRequestUtil {
 	 * @return the Bcash request
 	 * @throws InvalidParametersException if any of the arguments is null
 	 */
-	private static BcashRequest buildBcashRequest(String contentType, String content) throws InvalidParametersException {
+	private static BcashRequest buildBcashRequest(String contentType, String content)
+			throws InvalidParametersException {
 
 		if (contentType == null || content == null) {
-			throw new InvalidParametersException("Both the bcashRequestContentType and bcashRequestContent must be set set");
+			throw new InvalidParametersException(
+					"Both the bcashRequestContentType and bcashRequestContent must be set set");
 		}
 
 		BcashRequest bcashRequest = new BcashRequest();
@@ -1311,6 +1313,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		bcashRequest.setContent(content);
 		return bcashRequest;
 	}
+
 	/**
 	 * Builds a recurring bill request
 	 *
@@ -1330,7 +1333,7 @@ public final class RequestUtil extends CommonRequestUtil {
 
 		return request;
 	}
-	
+
 	/**
 	 * Sets the authentication credentials to the API request object.
 	 *
@@ -1345,16 +1348,14 @@ public final class RequestUtil extends CommonRequestUtil {
 		String language = getParameter(parameters, PayU.PARAMETERS.LANGUAGE);
 		if (language != null) {
 			request.setLanguage(Language.valueOf(language));
-		}
-		else {
+		} else {
 			request.setLanguage(null);
 		}
 
 		String isTest = getParameter(parameters, PayU.PARAMETERS.IS_TEST);
 		if (isTest != null) {
 			request.setTest(Boolean.getBoolean(getParameter(parameters, PayU.PARAMETERS.IS_TEST)));
-		}
-		else {
+		} else {
 			request.setTest(false);
 		}
 	}
