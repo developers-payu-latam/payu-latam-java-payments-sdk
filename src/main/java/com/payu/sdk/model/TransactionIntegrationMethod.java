@@ -45,6 +45,11 @@ public enum TransactionIntegrationMethod {
 	POST_API_v4_0,
 
 	/**
+	 * Post DM API
+	 */
+	DM_API,
+
+	/**
 	 * Post bcash API (restful)
 	 */
 	BCASH_API_TX;
