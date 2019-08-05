@@ -1,0 +1,5 @@
+2019-07-30
+----------
+Añadir metodo de pago CODENSA
+Issue:
+la-inc-19-07-30-sdk

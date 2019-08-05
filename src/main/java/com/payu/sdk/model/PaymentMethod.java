@@ -64,6 +64,8 @@ public enum PaymentMethod {
 
 	RIPLEY(PaymentMethodType.CREDIT_CARD),
 
+	CODENSA(PaymentMethodType.CREDIT_CARD),
+
 	PSE(PaymentMethodType.PSE),
 
 	BALOTO(PaymentMethodType.CASH),
