@@ -33,11 +33,40 @@ import com.payu.sdk.exceptions.InvalidParametersException;
 import com.payu.sdk.exceptions.PayUException;
 import com.payu.sdk.exceptions.SDKException.ErrorCode;
 import com.payu.sdk.helper.SignatureHelper;
-import com.payu.sdk.model.*;
+import com.payu.sdk.model.Address;
+import com.payu.sdk.model.AddressV4;
+import com.payu.sdk.model.BankListInformation;
+import com.payu.sdk.model.BcashRequest;
+import com.payu.sdk.model.Buyer;
+import com.payu.sdk.model.CreditCard;
+import com.payu.sdk.model.CreditCardToken;
+import com.payu.sdk.model.CreditCardTokenInformation;
+import com.payu.sdk.model.Currency;
+import com.payu.sdk.model.DocumentType;
+import com.payu.sdk.model.ExtraParemeterNames;
+import com.payu.sdk.model.Language;
+import com.payu.sdk.model.Merchant;
+import com.payu.sdk.model.Order;
+import com.payu.sdk.model.Payer;
+import com.payu.sdk.model.PaymentCountry;
+import com.payu.sdk.model.PaymentMethod;
+import com.payu.sdk.model.Person;
+import com.payu.sdk.model.PersonType;
+import com.payu.sdk.model.RemoveCreditCardToken;
+import com.payu.sdk.model.Transaction;
+import com.payu.sdk.model.TransactionIntegrationMethod;
+import com.payu.sdk.model.TransactionSource;
+import com.payu.sdk.model.TransactionType;
 import com.payu.sdk.model.request.Command;
 import com.payu.sdk.model.request.CommandRequest;
 import com.payu.sdk.model.request.Request;
-import com.payu.sdk.payments.model.*;
+import com.payu.sdk.paymentplan.model.RecurringBill;
+import com.payu.sdk.payments.model.ConfirmationPageRequest;
+import com.payu.sdk.payments.model.CreditCardTokenListRequest;
+import com.payu.sdk.payments.model.CreditCardTokenRequest;
+import com.payu.sdk.payments.model.PaymentMethodRequest;
+import com.payu.sdk.payments.model.PaymentRequest;
+import com.payu.sdk.payments.model.RemoveCreditCardTokenRequest;
 import com.payu.sdk.reporting.model.ReportingRequest;
 
 /**
@@ -164,7 +193,7 @@ public final class RequestUtil extends CommonRequestUtil {
 	}
 
 	/**
-	 * Sets the apiKey and apiLogin into merchant if the values are present 
+	 * Sets the apiKey and apiLogin into merchant if the values are present
 	 * into the {@code parameters} and are not present into the constants:
 	 * <ul>
 	 * 	<li>PayU.apiKey</li>
