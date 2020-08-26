@@ -54,7 +54,7 @@ public class CreditCard extends AbstractCardData implements Serializable {
 
 	@Override
 	public CardType getCardType() {
-		return CardType.valueOf(cardType);
+		return CardType.CREDIT;
 	}
 	
 }
