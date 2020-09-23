@@ -41,6 +41,8 @@ public enum TransactionResponseCode {
 	ENTITY_DECLINED("5"),
 	/** Transaction rejected by anti fraud system code */
 	ANTIFRAUD_REJECTED("23"),
+	/** Transaction rejected due to suspected fraud at the financial institution */
+	BANK_FRAUD_REJECTED("10011"),
 	/** Transaction review pending code */
 	PENDING_TRANSACTION_REVIEW("15"),
 	/** Transaction expired code */
