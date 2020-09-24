@@ -6,7 +6,7 @@
 	<groupId>com.payulatam.sdk</groupId>
 	<artifactId>payu-java-sdk</artifactId>
 	<packaging>jar</packaging>
-	<version>1.3.5</version>
+	<version>1.3.6</version>
 
 	<name>payu-java-sdk</name>
 	<description>PAYU SDK - Java 6+</description>
@@ -80,6 +80,12 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<scope>test</scope>
+			<version>2.3.0</version>
 		</dependency>
 	</dependencies>
 

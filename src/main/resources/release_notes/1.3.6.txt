@@ -1,0 +1,17 @@
+2020-09-24
+----------
+Adición de códigos de respuesta en la enumeración TransactionResponseCode
+
+BANK_FRAUD_REJECTION
+
+ABANDONED_TRANSACTION
+
+APPROVED_REFUND_DISPERSION
+
+INVALID_FIELD_STRUCTURE
+
+Para la integración continua con travis se actualizó el openjdk del 7 al 9.
+Se agrego la dependencia javax.xml.bind con un scope de test para arreglar errores en la integración
+
+Issue:
+https://pagosonline.jira.com/browse/S2P-381
