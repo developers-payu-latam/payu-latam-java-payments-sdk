@@ -37,7 +37,7 @@ public enum TransactionResponseCode {
 	 */
 	ANTIFRAUD_REJECTED("23"),
 	/**
-	 * Transaction rejected on suspicion of fraud at the financial institution
+	 * Transaction rejected due to suspicion of fraud in the financial entity
 	 */
 	BANK_FRAUD_REJECTED("10011"),
 	/**
@@ -176,16 +176,15 @@ public enum TransactionResponseCode {
 	PENDING_AWAITING_PSE_CONFIRMATION("28"),
 	/**
 	 *
-	 **/
+	 */
 	INVALID_RESPONSE_PARTIAL_APPROVAL("10007"),
-
 	/**
 	 * The transaction was declined by test mode.
 	 */
 	DECLINED_TEST_MODE_NOT_ALLOWED("40"),
 	/**
-	 *
-	 **/
+	 * Transaction amounts could not be converted
+	 */
 	ERROR_CONVERTING_DEPOSIT_AMOUNTS("56"),
 	/**
 	 * The transaction is related to a bank account with an error during its activation process
@@ -233,17 +232,16 @@ public enum TransactionResponseCode {
 	 */
 	CANCELLED_TRANSACTION_PAYER("10008"),
 	/**
-	 * The transaction was cancelled by the merchant before being processed
+	 * The transaction was canceled by the merchant before being processed
 	 */
 	CANCELLED_TRANSACTION_MERCHANT("10009"),
 	/**
-	 * The transaction was abandoned by the client at gateway
-	 * The transaction was abandoned (Cash)
+	 * The transaction was abandoned by the client at gateway The transaction was abandoned (Cash)
 	 */
 	ABANDONED_TRANSACTION("19"),
 
 	/**
-	 * The first refund transaction of dispersion was Approved but is necessary to execute a second refund transaction by a clinic
+	 * The first refund transaction of dispersion was Approved but it is necessary to execute a second refund transaction by a clinic
 	 * <ol>
 	 * 	<li>First transaction = Airline values</li>
 	 * 	<li>Second transaction = Agency values</li>
