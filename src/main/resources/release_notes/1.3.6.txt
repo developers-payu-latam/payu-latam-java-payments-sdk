@@ -1,0 +1,14 @@
+2020-09-24
+----------
+Actualización de códigos de respuesta en la enumeración TransactionResponseCode
+
+BANK_FRAUD_REJECTION
+
+ABANDONED_TRANSACTION
+
+APPROVED_REFUND_DISPERSION
+
+INVALID_FIELD_STRUCTURE
+
+Issue:
+https://pagosonline.jira.com/browse/S2P-381
