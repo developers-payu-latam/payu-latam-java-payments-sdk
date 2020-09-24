@@ -37,7 +37,7 @@ public enum TransactionResponseCode {
 	 */
 	ANTIFRAUD_REJECTED("23"),
 	/**
-	 * Transaction rejected due to suspected fraud at the financial institution
+	 * Transaction rejected on suspicion of fraud at the financial institution
 	 */
 	BANK_FRAUD_REJECTED("10011"),
 	/**
@@ -229,20 +229,21 @@ public enum TransactionResponseCode {
 	PENDING_NOTIFYING_ENTITY("30"),
 
 	/**
-	 * The transaction cancelled by payer before being processed
+	 * The transaction was cancelled by the payer before being processed
 	 */
 	CANCELLED_TRANSACTION_PAYER("10008"),
 	/**
-	 * The transaction cancelled by merchant before being processed
+	 * The transaction was cancelled by the merchant before being processed
 	 */
 	CANCELLED_TRANSACTION_MERCHANT("10009"),
 	/**
-	 * The transaction was abandoned by client at gateway The transaction was abandoned (Cash)
+	 * The transaction was abandoned by the client at gateway
+	 * The transaction was abandoned (Cash)
 	 */
 	ABANDONED_TRANSACTION("19"),
 
 	/**
-	 * The first refund transaction of dispersion was Approved but is necessary execute a second refund transaction by clinic
+	 * The first refund transaction of dispersion was Approved but is necessary to execute a second refund transaction by a clinic
 	 * <ol>
 	 * 	<li>First transaction = Airline values</li>
 	 * 	<li>Second transaction = Agency values</li>
