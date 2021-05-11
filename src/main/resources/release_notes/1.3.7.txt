@@ -1,0 +1,10 @@
+2021-05-11
+----------
+Adición de fuentes de integración en la enumeración TransactionSource
+
+ONLINE_PROCESSING
+
+RECURRING_PAYMENTS
+
+Issue:
+https://pagosonline.jira.com/browse/HPS-55
