@@ -39,6 +39,16 @@ public enum TransactionSource {
 	/**
 	 * Oracle Commerce Cloud Service API
 	 */
-	OCCS_API;
+	OCCS_API,
+
+	/**
+	 * Transactions processed from Online processing feature (Terminal virtual)
+	 */
+	ONLINE_PROCESSING,
+
+	/**
+	 * Transactions processed from Recurring Payments feature
+	 */
+	RECURRING_PAYMENTS
 
 }
