@@ -1,0 +1,6 @@
+2021-08-27
+----------
+Se remueven las validaciones para los campos PAYER_DNI_TYPE y PAYER_DNI para el medio de pago CODENSA
+
+Issue:
+https://pagosonline.jira.com/browse/CNS-19
