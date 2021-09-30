@@ -1,8 +1,0 @@
-2021-09-30
-----------
-Se ajusta mapeo de la respuesta de pagos masivos con token
-
-Issue:
-https://pagosonline.jira.com/browse/BT-56
-
-
