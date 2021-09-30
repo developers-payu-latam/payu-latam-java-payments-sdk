@@ -23,6 +23,7 @@
  */
 package com.payu.sdk.utils;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -37,8 +38,11 @@ import com.payu.sdk.model.TransactionSource;
 import com.payu.sdk.model.TransactionType;
 import com.payu.sdk.model.request.CommandRequest;
 import com.payu.sdk.model.request.Request;
+import com.payu.sdk.payments.model.MassiveTokenPaymentsRequest;
 import com.payu.sdk.payments.model.PaymentRequest;
 import com.payu.sdk.reporting.model.ReportingRequest;
+import com.payu.sdk.util.builders.MassiveTokenPaymentParametersMother;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -141,6 +145,28 @@ public class RequestUtilTest {
 		
 		PayU.apiKey = null;
 		PayU.apiLogin = null;
+	}
+
+	/**
+	 * Test if the method buildMassiveTokenPaymentsRequest return massive token payments
+	 * from parameters.
+	 *
+	 * @throws InvalidParametersException when a parameter is invalid
+	 */
+	@Test
+	public void testBuildMassiveTokenPaymentsRequest_whenParametersAreValid_thenValidMassiveRequestReturns()
+			throws InvalidParametersException {
+
+		Map<String, String> parameters = MassiveTokenPaymentParametersMother.getValidMassiveTokenPaymentParameters();
+
+		final MassiveTokenPaymentsRequest request = (MassiveTokenPaymentsRequest) RequestUtil
+				.buildMassiveTokenPaymentsRequest(parameters);
+
+		Assert.assertEquals(request.getMerchant().getApiKey(), parameters.get(PayU.PARAMETERS.API_KEY));
+		Assert.assertEquals(request.getMerchant().getApiLogin(), parameters.get(PayU.PARAMETERS.API_LOGIN));
+		Assert.assertEquals(request.getLanguage(), Language.es);
+		Assert.assertEquals(request.getContentFile(), parameters.get(PayU.PARAMETERS.CONTENT_FILE).getBytes(
+				StandardCharsets.UTF_8));
 	}
 
 	@Test(dataProvider = "transactionSources")

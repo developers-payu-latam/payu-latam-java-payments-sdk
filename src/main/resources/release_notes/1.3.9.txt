@@ -1,0 +1,8 @@
+2021-09-30
+----------
+Se agrega la funcionalidad de pagos masivos con token que ya se encuentra soportada por payments-api
+
+Issue:
+https://pagosonline.jira.com/browse/BT-56
+
+

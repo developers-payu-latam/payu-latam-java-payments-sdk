@@ -71,6 +71,7 @@ import com.payu.sdk.paymentplan.model.RecurringBill;
 import com.payu.sdk.payments.model.ConfirmationPageRequest;
 import com.payu.sdk.payments.model.CreditCardTokenListRequest;
 import com.payu.sdk.payments.model.CreditCardTokenRequest;
+import com.payu.sdk.payments.model.MassiveTokenPaymentsRequest;
 import com.payu.sdk.payments.model.PaymentMethodRequest;
 import com.payu.sdk.payments.model.PaymentRequest;
 import com.payu.sdk.payments.model.RemoveCreditCardTokenRequest;
@@ -1386,6 +1387,27 @@ public final class RequestUtil extends CommonRequestUtil {
 		else {
 			request.setTest(false);
 		}
+	}
+
+	/**
+	 * Builds a massive token payments request
+	 *
+	 * @param parameters The parameters to be sent to the server
+	 * @return The complete massive token payments payment request
+	 * @throws InvalidParametersException when a received parameter is invalid
+	 */
+	public static Request buildMassiveTokenPaymentsRequest(final Map<String, String> parameters)
+			throws InvalidParametersException  {
+
+		final MassiveTokenPaymentsRequest request = (MassiveTokenPaymentsRequest) buildDefaultRequest(
+				new MassiveTokenPaymentsRequest());
+
+		setAuthenticationByParameter(parameters, request);
+		setLanguageByParameter(parameters, request);
+		request.setCommand(Command.PROCESS_BATCH_TRANSACTIONS_TOKEN);
+		request.setContentFile(getByteArrayParameter(parameters, PayU.PARAMETERS.CONTENT_FILE));
+
+		return request;
 	}
 
 }
