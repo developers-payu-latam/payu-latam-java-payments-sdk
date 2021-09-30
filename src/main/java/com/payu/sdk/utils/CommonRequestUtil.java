@@ -24,6 +24,7 @@
 package com.payu.sdk.utils;
 
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -304,6 +305,25 @@ public class CommonRequestUtil {
 	}
 
 	/**
+	 * Gets a byte array value from the parameters
+	 *
+	 * @param value the value to convert to byte array
+	 * @param name the name of the parameter (exception purposes)
+	 * @return the byte array value it got
+	 * @throws InvalidParametersException
+	 */
+	public static byte[] getByteArray(String value, String name)
+			throws InvalidParametersException {
+
+		try {
+			return value.getBytes(StandardCharsets.UTF_8);
+		} catch (Exception e) {
+			throw new InvalidParametersException(String.format(
+					"The parameter [%s] isn't a valid byte array", name), e);
+		}
+	}
+
+	/**
 	 * Get a parameter from the parameters map
 	 *
 	 * @param parameters
@@ -457,6 +477,25 @@ public class CommonRequestUtil {
 				paramName) : null);
 
 		return booleanParameter;
+	}
+
+	/**
+	 * Gets an integer parameter from the parameters map
+	 *
+	 * @param parameters The parameters to be sent to the server
+	 * @param paramName the parameter to get
+	 * @return The integer parameter it got
+	 * @throws InvalidParametersException
+	 */
+	public static byte[] getByteArrayParameter(
+			Map<String, String> parameters, String paramName)
+			throws InvalidParametersException {
+
+		String parameter = getParameter(parameters, paramName);
+		if (parameter != null && parameter.trim().isEmpty()) {
+			return null;
+		}
+		return getByteArray(parameter, paramName);
 	}
 
 	/* Build Methods */

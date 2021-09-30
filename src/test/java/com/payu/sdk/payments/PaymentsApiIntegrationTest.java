@@ -67,6 +67,8 @@ import com.payu.sdk.payments.model.CreditCardTokenResponse;
 import com.payu.sdk.payments.model.PaymentAttemptRequest;
 import com.payu.sdk.util.CreditCards;
 import com.payu.sdk.util.TestEnvironment;
+import com.payu.sdk.util.builders.ContentFileMother;
+import com.payu.sdk.util.builders.MassiveTokenPaymentParametersMother;
 import com.payu.sdk.utils.LoggerUtil;
 
 /**
@@ -103,6 +105,11 @@ public class PaymentsApiIntegrationTest {
 	 * Valid installments number for Panama
 	 */
 	private static final String INSTALLMENT_NUMBRES_PA = "1";
+
+	/**
+	 * Valid colombia account
+	 */
+	private static final Integer COLOMBIA_ACCOUNT = 1;
 
 	/**
 	 * The created token id
@@ -414,6 +421,69 @@ public class PaymentsApiIntegrationTest {
 
 	}
 
+	/**
+	 * Do massive token payments when the parameters are valid then the batchId returns
+	 */
+	@Test
+	public void testDoMassiveTokenPayments_whenParametersAreValid_thenBatchIdReturns()
+			throws InvalidParametersException, PayUException, ConnectionException {
+
+		Thread.currentThread().setName("doMassiveTokenPaymentsWhenParamsAreValid");
+
+		// Arrange
+		final Map<String, String> parameters = MassiveTokenPaymentParametersMother
+				.getValidMassiveTokenPaymentParameters();
+
+		// Act
+		final String batchId = PayUPayments.doMassiveTokenPayments(parameters);
+
+		// Assert
+		LoggerUtil.info(RESPONSE_LOG_MESSAGE, batchId);
+		Assert.assertNotNull(batchId, "BatchId can't be null");
+	}
+
+	/**
+	 * Do massive token payments when content file is null then throw invalid parameters exception
+	 */
+	@Test(expectedExceptions = InvalidParametersException.class)
+	public void testDoMassiveTokenPayments_whenContentFileIsNull_thenThrowInvalidParametersException()
+			throws InvalidParametersException, PayUException, ConnectionException {
+
+		Thread.currentThread().setName("doMassiveTokenPaymentsWhenContentFileIsNull");
+
+		// Arrange
+		final Map<String, String> parameters = MassiveTokenPaymentParametersMother
+				.getInvalidMassiveTokenPaymentParameters();
+
+		// Act
+		final String batchId = PayUPayments.doMassiveTokenPayments(parameters);
+
+		// Assert
+		LoggerUtil.info(RESPONSE_LOG_MESSAGE, batchId);
+		Assert.assertNotNull(batchId, "BatchId can't be null");
+	}
+
+	/**
+	 * Do massive token payments when the content file is invalid then throw invalid parameters exception
+	 */
+	@Test(expectedExceptions = InvalidParametersException.class)
+	public void testDoMassiveTokenPayments_whenContentFileIsInvalid_thenThrowPayUException()
+			throws InvalidParametersException, PayUException, ConnectionException {
+
+		Thread.currentThread().setName("doMassiveTokenPaymentsWhenContentFileIsInvalid");
+
+		// Arrange
+		final Map<String, String> parameters = MassiveTokenPaymentParametersMother
+				.buildMassiveTokenPaymentParameters(ContentFileMother.getInvalidContentFile());
+
+		// Act
+		final String batchId = PayUPayments.doMassiveTokenPayments(parameters);
+
+		// Assert
+		LoggerUtil.info(RESPONSE_LOG_MESSAGE, batchId);
+		Assert.assertNotNull(batchId, "BatchId can't be null");
+	}
+	
 	/**
 	 * Do capture
 	 */
@@ -1303,8 +1373,7 @@ public class PaymentsApiIntegrationTest {
 
 		// Payment Method BALOTO
 		// Colombian account
-		Integer accountId = 1;
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, accountId.toString());
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, COLOMBIA_ACCOUNT.toString());
 		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD,
 				PaymentMethod.BALOTO.name());
 
@@ -1598,9 +1667,7 @@ public class PaymentsApiIntegrationTest {
 		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
 
 		// Colombia account
-		Integer accountId = 1;
-
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, accountId.toString());
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, COLOMBIA_ACCOUNT.toString());
 
 		// Currency
 		Currency txCurrency = Currency.COP;
@@ -1673,9 +1740,7 @@ public class PaymentsApiIntegrationTest {
 		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
 
 		// Colombia account
-		Integer accountId = 1;
-
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, accountId.toString());
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, COLOMBIA_ACCOUNT.toString());
 
 		// Currency
 		Currency txCurrency = Currency.COP;
@@ -1752,9 +1817,7 @@ public class PaymentsApiIntegrationTest {
 		parameters.put(PayU.PARAMETERS.COUNTRY, PaymentCountry.CO.name());
 
 		// Colombia account
-		Integer accountId = 1;
-
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, accountId.toString());
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, COLOMBIA_ACCOUNT.toString());
 
 		// Currency
 		Currency txCurrency = Currency.COP;
@@ -1878,8 +1941,7 @@ public class PaymentsApiIntegrationTest {
 
 		// Payment Method BALOTO
 		// Colombian account
-		Integer accountId = 1;
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, accountId.toString());
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, COLOMBIA_ACCOUNT.toString());
 		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD,
 				PaymentMethod.BALOTO.name());
 
@@ -2010,8 +2072,7 @@ public class PaymentsApiIntegrationTest {
 		parameters.put(PayU.PARAMETERS.VALUE, txValue.toString());
 
 		// Colombian account
-		Integer accountId = 1;
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, accountId.toString());
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, COLOMBIA_ACCOUNT.toString());
 		//The invalid Payment Method
 		parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, "INVALID_PAYMENT_METHOD");
 
@@ -2069,8 +2130,7 @@ public class PaymentsApiIntegrationTest {
 		parameters.put(PayU.PARAMETERS.VALUE, txValue.toString());
 
 		// Colombian account
-		Integer accountId = 1;
-		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, accountId.toString());
+		parameters.put(PayU.PARAMETERS.ACCOUNT_ID, COLOMBIA_ACCOUNT.toString());
 		//Without Payment Method or Null
 		//parameters.put(PayU.PARAMETERS.PAYMENT_METHOD, null);
 

@@ -123,6 +123,8 @@ public abstract class PayU {
 		String TOKEN_ID = "tokenId";
 		/** the batch token id. */
 		String BATCH_TOKEN_ID = "batchTokenId";
+		/** the content file for batch token */
+		String CONTENT_FILE = "contentFile";
 		/** The payment method to use, {@link #com.payu.sdk.model.PaymentMethod} */
 		String PAYMENT_METHOD = "paymentMethod";
 

@@ -44,6 +44,7 @@ import com.payu.sdk.model.TransactionType;
 import com.payu.sdk.model.request.Command;
 import com.payu.sdk.model.response.ResponseCode;
 import com.payu.sdk.payments.model.BankListResponse;
+import com.payu.sdk.payments.model.MassiveTokenPaymentsResponse;
 import com.payu.sdk.payments.model.PaymentAttemptRequest;
 import com.payu.sdk.payments.model.PaymentMethodListResponse;
 import com.payu.sdk.payments.model.PaymentMethodResponse;
@@ -411,6 +412,22 @@ public final class PayUPayments extends PayU {
 		return processTransactionWithRequestHeaders(parameters, headers,
 				TransactionType.PARTIAL_REFUND);
 	}
+
+	/**
+	 * Makes massive token payments petition
+	 *
+	 * @param parameters The parameters to be sent to the server
+	 * @return The transaction response to the request sent
+	 * @throws PayUException when the response of payments-api is error
+	 * @throws InvalidParametersException when a received parameter is invalid
+	 * @throws ConnectionException Connection error with payments-api
+	 */
+	public static String doMassiveTokenPayments(final Map<String, String> parameters)
+			throws PayUException, InvalidParametersException, ConnectionException {
+
+		validateMassiveTokenPaymentsRequest(parameters);
+		return sendMassiveTokenPayments(parameters).getId();
+	}
 	
 	/**
 	 * Makes payment petition
@@ -511,6 +528,48 @@ public final class PayUPayments extends PayU {
 		PaymentResponse response = PaymentResponse.fromXml(res);
 
 		return response.getTransactionResponse();
+	}
+
+	/**
+	 * Validate massive token payments request
+	 *
+	 * @param parameters The parameters to be sent to the server
+	 * @throws PayUException when the response of payments-api is error
+	 * @throws InvalidParametersException when a received parameter is invalid
+	 * @throws ConnectionException Connection error with payments-api
+	 */
+	private static void validateMassiveTokenPaymentsRequest(final Map<String, String> parameters)
+			throws InvalidParametersException {
+
+		RequestUtil.validateParameters(parameters, getRequiredParametersForMassiveTokenTransactions());
+	}
+
+	/**
+	 * Makes payment petition
+	 *
+	 * @param parameters The parameters to be sent to the server
+	 * @return The transaction response to the request sent
+	 * @throws PayUException when the response of payments-api is error
+	 * @throws InvalidParametersException when a received parameter is invalid
+	 * @throws ConnectionException Connection error with payments-api
+	 */
+	private static MassiveTokenPaymentsResponse sendMassiveTokenPayments(final Map<String, String> parameters)
+			throws PayUException, InvalidParametersException, ConnectionException {
+
+		return MassiveTokenPaymentsResponse.fromXml(HttpClientHelper.sendRequest(
+				RequestUtil.buildMassiveTokenPaymentsRequest(parameters),
+				RequestMethod.POST,
+				HttpClientHelper.SOCKET_TIMEOUT));
+	}
+
+	/**
+	 * Initialize the list with default parameters
+	 *
+	 * @return array with required parameters
+	 */
+	private static String[] getRequiredParametersForMassiveTokenTransactions() {
+
+		return new String[] {PARAMETERS.API_KEY, PARAMETERS.API_LOGIN, PARAMETERS.CONTENT_FILE};
 	}
 
 	/**
