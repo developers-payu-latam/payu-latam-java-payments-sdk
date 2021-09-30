@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.payu.sdk.exceptions.PayUException;
 import com.payu.sdk.exceptions.SDKException.ErrorCode;
+import com.payu.sdk.payments.model.MassiveTokenPaymentsResponse;
 import com.payu.sdk.payments.model.PaymentResponse;
 import com.payu.sdk.reporting.model.ReportingResponse;
 import com.payu.sdk.utils.JaxbUtil;
@@ -145,6 +146,9 @@ public class Response implements Serializable {
 			} else if (xmlData.contains("<reportingResponse>")) {
 				baseResponse = JaxbUtil.convertXmlToJava(
 						ReportingResponse.class, xmlData);
+				responseCode = baseResponse.getCode();
+			} else if (xmlData.contains("<transactionTokenBatchResponse>")) {
+				baseResponse = JaxbUtil.convertXmlToJava(MassiveTokenPaymentsResponse.class, xmlData);
 				responseCode = baseResponse.getCode();
 			}
 
