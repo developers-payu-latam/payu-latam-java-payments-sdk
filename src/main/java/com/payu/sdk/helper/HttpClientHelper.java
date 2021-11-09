@@ -313,34 +313,36 @@ public final class HttpClientHelper {
 	 * @throws IOException
 	 */
 	private static String getErrorMessage(HttpResponse httpResponse)
-			throws PayUException, IOException {
+			throws PayUException, IOException, ConnectionException {
 
 		String error = httpResponse.getStatusLine().getReasonPhrase();
+		try{
+			String xml = getXmlResponse(httpResponse);
 
-		String xml = getXmlResponse(httpResponse);
+			if (xml != null && !xml.isEmpty()) {
 
-		if (xml != null && !xml.isEmpty()) {
+				ErrorResponse response;
 
-			ErrorResponse response;
+				try {
 
-			try {
+					response = JaxbUtil.convertXmlToJava(ErrorResponse.class, xml);
 
-				response = JaxbUtil.convertXmlToJava(ErrorResponse.class, xml);
+				} catch (PayUException ex) {
+					LoggerUtil.debug("Invalid XML entity");
+					return error;
+				}
 
-			} catch (PayUException ex) {
-				LoggerUtil.debug("Invalid XML entity");
-				return error;
+				if (response.getDescription() != null) {
+					return response.getDescription();
+				}
+
+				if (response.getErrorList() != null
+						&& response.getErrorList().length > 0) {
+					return Arrays.toString(response.getErrorList());
+				}
 			}
-
-			if (response.getDescription() != null) {
-				return response.getDescription();
-			}
-
-			if (response.getErrorList() != null
-					&& response.getErrorList().length > 0) {
-				return Arrays.toString(response.getErrorList());
-			}
-
+		} catch(Exception exception){
+			throw new ConnectionException(httpResponse.getStatusLine().toString());
 		}
 
 		return error;
