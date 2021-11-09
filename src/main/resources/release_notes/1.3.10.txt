@@ -1,0 +1,10 @@
+2021-11-09
+----------
+Se agrega maneja excepción en deserialización de respuesta fallida por parte de payments-api y reports-api
+
+Issue:
+https://pagosonline.jira.com/browse/BT-65
+
+
+
+
