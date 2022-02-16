@@ -65,7 +65,7 @@ public class TokenBrasilApiIntegrationTest {
 	/**
 	 * The order id
 	 */
-	private Integer orderId;
+	private Long orderId;
 
 	@BeforeClass
 	private void init() {

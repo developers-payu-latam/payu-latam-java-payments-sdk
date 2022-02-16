@@ -64,7 +64,7 @@ public class RecurringBill extends Request {
 	private String id;
 
 	/** The {@link Order} identifier */
-	private Integer orderId;
+	private Long orderId;
 
 	/** The {@link PaymentMethodType} used */
 	private PaymentMethodType paymentMethodType;
@@ -123,7 +123,7 @@ public class RecurringBill extends Request {
 	 * @return The {@link Order} identifier.
 	 */
 	@XmlElement
-	public Integer getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
 
@@ -267,7 +267,7 @@ public class RecurringBill extends Request {
 	 *
 	 * @param orderId The {@link Order} identifier.
 	 */
-	public void setOrderId(Integer orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 

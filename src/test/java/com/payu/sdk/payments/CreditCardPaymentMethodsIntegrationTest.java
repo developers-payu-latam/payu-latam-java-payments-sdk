@@ -236,7 +236,7 @@ public class CreditCardPaymentMethodsIntegrationTest {
 					.getResponseCode())) {
 
 				String transactionId = response.getTransactionId();
-				Integer orderId = response.getOrderId();
+				Long orderId = response.getOrderId();
 				LoggerUtil.info("Transaction Aproveed. orderId ={0} transactionId = {1}", orderId, transactionId );
 			}
 

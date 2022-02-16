@@ -119,12 +119,12 @@ public class PaymentsApiIntegrationTest {
 	/**
 	 * The created order id
 	 */
-	private Integer orderId;
+	private Long orderId;
 
 	/**
 	 * The created order id for Authorization
 	 */
-	private Integer orderIdAuthorization;
+	private Long orderIdAuthorization;
 
 	/**
 	 * the created transactionId
