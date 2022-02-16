@@ -52,7 +52,7 @@ public class TransactionResponse implements Serializable {
 	private static final long serialVersionUID = 7073372114746122059L;
 	/** the related order id. */
 	@XmlElement(required = false)
-	private Integer orderId;
+	private Long orderId;
 	/** the order's reference code */
 	@XmlElement(required = false)
 	private String orderReferenceCode;
@@ -111,7 +111,7 @@ public class TransactionResponse implements Serializable {
 	 *
 	 * @return the orderId
 	 */
-	public Integer getOrderId() {
+	public Long getOrderId() {
 		return orderId;
 	}
 	
@@ -267,7 +267,7 @@ public class TransactionResponse implements Serializable {
 	 * @param orderId
 	 *            the orderId to set
 	 */
-	public void setOrderId(Integer orderId) {
+	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
 	}
 	

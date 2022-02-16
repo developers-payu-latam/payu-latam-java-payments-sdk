@@ -52,7 +52,7 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = -8727807302421724650L;
 	/** The order's identifier. */
 	@XmlElement(required = false)
-	private Integer id;
+	private Long id;
 	/** The account identifier. */
 	@XmlElement(required = false)
 	private Integer accountId;
@@ -105,7 +105,7 @@ public class Order implements Serializable {
 	 *
 	 * @return the id
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -245,7 +245,7 @@ public class Order implements Serializable {
 	 *
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

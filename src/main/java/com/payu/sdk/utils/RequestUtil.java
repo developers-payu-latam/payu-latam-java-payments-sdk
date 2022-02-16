@@ -351,7 +351,7 @@ public final class RequestUtil extends CommonRequestUtil {
 		setAuthenticationByParameter(parameters, request);
 		setLanguageByParameter(parameters, request);
 		
-		Integer orderId = getIntegerParameter(parameters,
+		Long orderId = getLongParameter(parameters,
 				PayU.PARAMETERS.ORDER_ID);
 
 		Map<String, Object> details = new HashMap<String, Object>();
@@ -878,7 +878,7 @@ public final class RequestUtil extends CommonRequestUtil {
 
 		String payerName = getParameter(parameters, PayU.PARAMETERS.PAYER_NAME);
 
-		Integer orderId = getIntegerParameter(parameters,
+		Long orderId = getLongParameter(parameters,
 				PayU.PARAMETERS.ORDER_ID);
 		Integer accountId = getIntegerParameter(parameters,
 				PayU.PARAMETERS.ACCOUNT_ID);

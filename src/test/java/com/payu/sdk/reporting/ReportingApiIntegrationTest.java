@@ -71,7 +71,7 @@ public class ReportingApiIntegrationTest {
 	/**
 	 * The created order id
 	 */
-	private static Integer orderId;
+	private static Long orderId;
 
 	/**
 	 * the created transactionId
