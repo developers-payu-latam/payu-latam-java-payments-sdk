@@ -103,7 +103,12 @@ public enum PaymentMethodType {
 	/**
 	 * Payment using an external wallet.
 	 */
-	WALLET(15, "WALLET", Boolean.TRUE);
+	WALLET(15, "WALLET", Boolean.TRUE),
+
+	/**
+	 * BNPL payments
+	 */
+	BNPL(16, "BNPL", Boolean.TRUE);
 
 	/**
 	 * The payment method identifier.
