@@ -1,0 +1,6 @@
+2022-06-09
+----------
+Add BNPL paymentMethodType
+
+Issue:
+https://pagosonline.jira.com/browse/BNPL-53
