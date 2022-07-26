@@ -124,10 +124,10 @@ public interface Constants {
 	String ALGORITHM_SHA = "sha";
 
 	/** SHA-256 algorithm */
-	String ALGORITHM_SHA_256 = "sha256";	
-	
+	String ALGORITHM_SHA_256 = "sha256";
+
 	/** The production environment prefix URL*/
-	String PAYMENTS_PRD_URL = "https://api.payulatam.com";
+	String PAYMENTS_PRD_URL = "https://api2.payulatam.com";
 	
 	/** The STG environment prefix URL*/
 	String PAYMENTS_STG_URL = "https://stg.api.payulatam.com";
