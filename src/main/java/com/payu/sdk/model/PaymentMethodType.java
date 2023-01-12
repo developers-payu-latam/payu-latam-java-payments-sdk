@@ -108,7 +108,12 @@ public enum PaymentMethodType {
 	/**
 	 * BNPL payments
 	 */
-	BNPL(16, "BNPL", Boolean.TRUE);
+	BNPL(16, "BNPL", Boolean.TRUE),
+
+	/**
+	 * Payment using PSE AVANZA.
+	 */
+	PSE_AVANZA(17, "PSE_AVANZA");
 
 	/**
 	 * The payment method identifier.
