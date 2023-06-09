@@ -1,0 +1,6 @@
+2023-01-10
+----------
+Add NEQUI paymentMethodType
+
+Issue:
+https://gpo-engineering.atlassian.net/browse/PL-2911
