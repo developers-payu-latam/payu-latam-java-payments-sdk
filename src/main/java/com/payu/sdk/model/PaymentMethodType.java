@@ -113,7 +113,12 @@ public enum PaymentMethodType {
 	/**
 	 * Payment using PSE AVANZA.
 	 */
-	PSE_AVANZA(17, "PSE_AVANZA");
+	PSE_AVANZA(17, "PSE_AVANZA"),
+
+	/**
+	 * Payment using PROCCESSOR INTEGRATED WALLET.
+	 */
+	PROCCESSOR_INTEGRATED_WALLET(18, "PROCCESSOR_INTEGRATED_WALLET");
 
 	/**
 	 * The payment method identifier.
