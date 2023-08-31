@@ -113,7 +113,11 @@ public enum PaymentMethodType {
 	/**
 	 * Payment using PSE AVANZA.
 	 */
-	PSE_AVANZA(17, "PSE_AVANZA");
+	PSE_AVANZA(17, "PSE_AVANZA"),
+	/**
+	 * Payment using PSE AVANZA.
+	 */
+	NEQUI(18, "NEQUI");
 
 	/**
 	 * The payment method identifier.
