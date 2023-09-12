@@ -1,0 +1,6 @@
+2023-09-12
+----------
+Add PROCCESSOR_INTEGRATED_WALLET paymentMethodType
+
+Issue:
+https://gpo-engineering.atlassian.net/browse/PL-2819
