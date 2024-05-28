@@ -252,7 +252,13 @@ public enum TransactionResponseCode {
 	/**
 	 * The code for ACH BANCOLOMBIA process
 	 */
-	INVALID_FIELD_STRUCTURE("10010");
+	INVALID_FIELD_STRUCTURE("10010"),
+
+	/** The transaction was sent to 3DS validation system and is awaiting for response. */
+	PENDING_THREEDS_CALLBACK("1117"),
+
+	/** The transaction was rejected by 3DS authentication. */
+	THREEDS_REJECTED("1118");
 
 	/**
 	 * The transaction response code.
