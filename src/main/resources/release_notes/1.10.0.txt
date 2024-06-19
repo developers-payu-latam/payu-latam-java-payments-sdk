@@ -1,0 +1,6 @@
+2024-06-19
+----------
+Add Payment method Bancolombia button
+
+Issue:
+https://gpo-engineering.atlassian.net/browse/PL-4470
