@@ -1,0 +1,7 @@
+2024-11-12
+----------
+Add INTEROPERABLE_QR_BANK_TRANSFER paymentMethodType
+
+Issue:
+https://gpo-engineering.atlassian.net/browse/PL-5725
+https://gpo-engineering.atlassian.net/browse/PL-9036
