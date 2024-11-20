@@ -123,7 +123,12 @@ public enum PaymentMethodType {
 	/**
 	 * Payment using BANCOLOMBIA_BUTTON.
 	 */
-	BANCOLOMBIA_BUTTON(19, "BANCOLOMBIA_BUTTON");
+	BANCOLOMBIA_BUTTON(19, "BANCOLOMBIA_BUTTON"),
+
+	/**
+	 * Payment using INTEROPERABLE_QR_BANK_TRANSFER.
+	 */
+	INTEROPERABLE_QR_BANK_TRANSFER(20, "INTEROPERABLE_QR_BANK_TRANSFER");
 
 	/**
 	 * The payment method identifier.
