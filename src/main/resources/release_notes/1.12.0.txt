@@ -1,7 +1,6 @@
-2024-11-12
+2025-05-06
 ----------
-Add INTEROPERABLE_QR_BANK_TRANSFER paymentMethodType
+Add PREPAID_CARD paymentMethodType
 
 Issue:
-https://gpo-engineering.atlassian.net/browse/PL-5725
-https://gpo-engineering.atlassian.net/browse/PL-9036
+https://gpo-engineering.atlassian.net/browse/PL-11626

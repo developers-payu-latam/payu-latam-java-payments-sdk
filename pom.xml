@@ -6,7 +6,7 @@
 	<groupId>com.payulatam.sdk</groupId>
 	<artifactId>payu-java-sdk</artifactId>
 	<packaging>jar</packaging>
-	<version>1.11.0</version>
+	<version>1.12.0</version>
 
 	<name>payu-java-sdk</name>
 	<description>PAYU SDK - Java 6+</description>
