@@ -1,0 +1,6 @@
+2025-05-06
+----------
+Add PREPAID_CARD paymentMethodType
+
+Issue:
+https://gpo-engineering.atlassian.net/browse/PL-11626
